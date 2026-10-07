@@ -1,19 +1,34 @@
 <link rel="stylesheet" href="css/styles.css">
 <script src="js/nn.min.js"></script>
+
 <script>
   /* global nn */
 
   function tenPrint() {
-    const hue = nn.random(360)
+
+    // Changed color range
+    // Picks colors between green (120) and blue (240)
+    const hue = nn.random(120, 240)
     const clr = nn.hsl(hue, 100, 20)
-    const chars = '─ │ ┌ ┐ └ ┘ ├ ┤ ┬ ┴ ┼'
+
+    // Changed symbols
+    const chars = '★ ● ▲ ■ + ='
+
+    // Empty pattern
     let pattern = ''
-    nn.times(600, () => pattern += nn.random(chars))
+
+    // Changed loop from 600 to 400
+    nn.times(400, () => pattern += nn.random(chars))
+
+    // Puts the pattern on the page
     nn.get('body')
       .content(pattern)
       .css('background', clr)
   }
 
+  // Runs when the page loads
   nn.on('load', tenPrint)
+
+  // Creates a new pattern when you click
   nn.on('click', tenPrint)
 </script>
